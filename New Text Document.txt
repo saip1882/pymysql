@@ -1,0 +1,112 @@
+import pymysql
+
+
+conn = pymysql.connect(
+host='localhost',
+user='root',
+password="12345",
+db='sakila',
+)
+#print(conn)
+
+#print(conn)
+cur = conn.cursor()
+
+string_aquery = "SELECT VERSION()"
+cur.execute(string_aquery)
+output = cur.fetchall()
+print(output)
+
+
+
+
+import pymysql
+
+
+conn = pymysql.connect(
+host='localhost',
+user='root',
+password="12345",
+db='sakila',
+)
+
+cur = conn.cursor()
+str1_query = "delete from student where id = 12"
+cur.execute(str1_query)
+conn.commit()
+print("record deleted sucessfully")
+conn.close()
+
+
+
+
+
+import pymysql
+conn = pymysql.connect(
+host='localhost',
+user='root',
+password="12345",
+db='sakila',
+)
+
+cur = conn.cursor()
+str1_query = "update sakila.student SET name='piyush' WHERE id=14;"
+cur.execute(str1_query)
+conn.commit()
+print("updated successfully ")
+conn.close()
+
+
+placeholder:
+import pymysql
+
+
+conn = pymysql.connect(
+host='localhost',
+user='root',
+password="12345",
+db='sakila',
+)
+get_id = int(input("enter the id"))
+cur = conn.cursor()
+q1 = "select * from student where id = %s"
+cur.execute(q1,get_id)
+output = cur.fetchall()
+print(output)
+# To close the connection
+conn.close()
+
+
+placeholder -2
+import pymysql
+conn = pymysql.connect(
+host='localhost',
+user='root',
+password="12345",
+db='sakila',
+)
+
+cur = conn.cursor()
+
+
+get_name = input("enter the name ")
+get_id = int(input("enter the id"))
+
+sql_update_query = "update student SET name= %s WHERE id=%s"
+cur.execute(sql_update_query,(get_name, get_id))
+conn.commit()
+print("updated suucessfully")
+
+
+
+Reading sql through pandas:
+
+from sqlalchemy import create_engine
+import pandas as pd
+
+db_connection_str = 'mysql+pymysql://root:12345@127.0.0.1/sakila'
+db_connection = create_engine(db_connection_str)
+
+df = pd.read_sql('SELECT * FROM teacher', con=db_connection)
+
+print(df)
